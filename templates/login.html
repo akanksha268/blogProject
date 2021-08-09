@@ -1,0 +1,33 @@
+<!DOCTYPE html>
+{% extends 'base.html' %}
+
+{% block body_block %}
+
+<style>
+  .i-am-centered {
+    margin: auto;
+    max-width: 50%;
+    padding: 5%;
+    padding-top: 3%;
+    border: 2px solid black;
+  }
+</style>
+
+<div class="container i-am-centered container">
+  <form method="POST">
+      {% csrf_token %}
+      <h1 class="mb-4" style="text-align: center; color: black;">Login Form   :</h1>
+      <div class="form-group" style="font-size: 15px; color: black;">
+        <label>UserName:&nbsp; &nbsp; &nbsp; </label>
+        {{ form.username }}
+      </div>
+      <div class="form-group" style="font-size: 15px; color: black;">
+        <label>Password:&nbsp; &nbsp; &nbsp; </label>
+        {{ form.password }}
+      </div>
+      <div style="text-align: center;">
+        <button type="submit" class="btn btn-info btn-lg" style="text-align: center;"><b style="font-size: 15px; padding: 5px;">Login</b></button>
+      </div>
+  </form>
+</div>
+{% endblock %}

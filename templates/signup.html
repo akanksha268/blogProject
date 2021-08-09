@@ -1,0 +1,55 @@
+<!DOCTYPE html>
+{% extends 'base.html' %}
+{% load static %}
+{% block body_block %}
+	<style>
+		.i-am-centered {
+			margin: auto;
+			max-width: 50%;
+			padding: 5%;
+      padding-top: 3%;
+      border: 2px solid black;
+		}
+	</style>
+
+	<div class="i-am-centered container">
+    {% if registered %}
+      <h1 style="text-align: center;">Thank you for signing up!!</h1>
+      <h2 style="text-align: center;" class="mt-2">Continue browsing and share your expirence and any new topic to discuss in the feedback section. We will happy to get your response :) </h2>
+    {% else %}
+		<form method="POST">
+			{% csrf_token %}
+      <h1 class="mb-4" style="text-align: center; color: black;">Sign Up Form   :</h1>
+			<div class="form-group" style="font-size: 15px; color: black;">
+				<label>First Name:&nbsp; &nbsp; &nbsp;</label>
+				{{ form.first_name }}
+			</div>
+			<div class="form-group" style="font-size: 15px; color: black;">
+				<label>Last Name:&nbsp; &nbsp; &nbsp; </label>
+				{{ form.last_name }}
+			</div>
+			<div class="form-group" style="font-size: 15px; color: black;">
+				<label>UserName:&nbsp; &nbsp; &nbsp; </label>
+				{{ form.username }}
+			</div>
+      <div class="form-group" style="font-size: 15px; color: black;">
+        <label>Email Address:&nbsp; &nbsp; &nbsp; </label>
+        {{ form.email }}
+      </div>
+			<div class="form-group" style="font-size: 15px; color: black;">
+				<label>Password:&nbsp; &nbsp; &nbsp; </label>
+				{{ form.password }}
+			</div>
+      <div class="form-group" style="font-size: 15px; color: black;">
+        <label>Confirm Password: &nbsp; &nbsp; &nbsp;</label>
+        {{ form.confirmPassword }}
+      </div>
+      <div style="text-align: center;">
+        <button type="submit" class="btn btn-info btn-lg" style="text-align: center;"><b style="font-size: 15px; padding: 5px;" >Sign Up</b></button>
+      </div>
+    {% endif %}
+
+		</form>
+	</div>
+
+{% endblock %}

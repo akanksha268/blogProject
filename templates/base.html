@@ -1,0 +1,58 @@
+<!DOCTYPE html>
+<html>
+  <head>
+    <meta charset="utf-8">
+    <title></title>
+    <link rel="stylesheet" href="https://stackpath.bootstrapcdn.com/bootstrap/3.4.1/css/bootstrap.min.css" integrity="sha384-HSMxcRTRxnN+Bdg0JdbxYKrThecOKuH5zCYotlSAcp1+c8xmyTe9GYg1l9a69psu" crossorigin="anonymous">
+    <link rel="stylesheet" href="https://maxcdn.bootstrapcdn.com/bootstrap/3.3.7/css/bootstrap.min.css" integrity="sha384-BVYiiSIFeK1dGmJRAkycuHAHRg32OmUcww7on3RYdg4Va+PmSTsz/K68vbdEjh4u" crossorigin="anonymous">
+    <link rel="stylesheet" href="https://maxcdn.bootstrapcdn.com/bootstrap/3.3.7/css/bootstrap-theme.min.css" integrity="sha384-rHyoN1iRsVXV4nD0JutlnGaslCJuC7uwjduW9SVrLvRYooPp2bWYgmgJQIXwl/Sp" crossorigin="anonymous">
+    <link rel="stylesheet" href="https://maxcdn.bootstrapcdn.com/bootstrap/4.5.0/css/bootstrap.min.css">
+    <link rel="stylesheet" href="https://stackpath.bootstrapcdn.com/bootstrap/4.4.1/css/bootstrap.min.css">
+    <script src="https://kit.fontawesome.com/e7d8e9b208.js" crossorigin="anonymous"></script>
+    <script src="https://ajax.googleapis.com/ajax/libs/jquery/3.5.1/jquery.min.js"></script>
+    <script src="https://cdnjs.cloudflare.com/ajax/libs/popper.js/1.16.0/umd/popper.min.js"></script>
+    <script src="https://maxcdn.bootstrapcdn.com/bootstrap/4.5.0/js/bootstrap.min.js"></script>
+  </head>
+  <body>
+    <nav class="navbar navbar-expand-lg" style="padding:10px; background-color:#c21d1d">
+      <div class="container-fluid">
+
+          <div class="navbar-header">
+              <button type="button" class="navbar-toggler" data-toggle="collapse" data-target="#example-navbar">
+                <i class="fas fa-bars"></i>
+              </button>
+              <a class="navbar-brand" href="{% url 'post_list' %}"><b style="color:black; font-size: 21px">MySite</b></a>
+          </div>
+
+          <div  class="collapse navbar-collapse" id="example-navbar">
+            <!-- <ul class="nav navbar-nav">
+              For the both logined and not logined users
+            </ul> -->
+
+            <ul class="nav navbar-nav navbar-right">
+              {% if user.is_authenticated %}
+                {% if user.is_superuser %}
+                  <li><a href="{% url 'admin:index' %}" class="nav-link ml-3"><b style="color:black; font-size: 18px;">Admin</b></a></li>
+                  <li><a href="{% url 'post_new' %}" class="nav-link ml-3"><b style="color:black; font-size: 18px;">Create Blog</b></a></li>
+                {% endif %}
+                <li><a href="{% url 'accounts:profile_view' %}" ><i class="fas fa-user-circle" style="font-size:20px; color:black"></i><b style="color:black; font-size: 18px;">&nbsp;{{ user.username }}</b></a></li>
+                <li><a href="{% url 'accounts:logout' %}" class="nav-link ml-3"><b style="color:black; font-size: 18px;">Logout</b></a></li>
+              {% else %}
+                <li><a href="{% url 'accounts:login' %}" class="nav-link ml-3"><b style="color:black; font-size: 18px;">Login</b></a></li>
+                <li><a href="{% url 'accounts:signup' %}" class="nav-link ml-3"><b style="color:black; font-size: 18px;">Sign Up</b></a></li>
+              {% endif %}
+
+            </ul>
+          </div>
+
+      </div>
+    </nav>
+
+    <div class="container">
+      {% block body_block %}
+        <!-- Anything outside of this will be inherited if we extend! -->
+      {% endblock %}
+    </div>
+
+  </body>
+</html>

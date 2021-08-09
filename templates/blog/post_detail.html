@@ -1,0 +1,11 @@
+<!DOCTYPE html>
+{% extends 'base.html' %}
+
+{% block body_block %}
+  <div class="container">
+    <h1>{{ post.title }}</h1>
+    <small style="font-size: 10px"><b>{{ post.created_date }}</b></small>
+    <hr style="height:1px;background-color:black">
+    <p style="font-size: 17px">{{ post.text }}</p>
+  </div>
+{% endblock %}
